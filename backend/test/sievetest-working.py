@@ -1,7 +1,7 @@
 #works great
 import sieve
 import os
-os.environ["SIEVE_API_KEY"] = "P6kSUHtIF1prsbBRpq-sCOBXo9ZfuJmrBOq_E49RwVk"
+os.environ["SIEVE_API_KEY"] = ""
 file = sieve.File(url="https://storage.googleapis.com/sieve-prod-us-central1-public-file-upload-bucket/851601dc-e4d7-436c-b37d-67003ca2ef50/dd67fad4-2e96-475f-bda5-c16fa6ef71c6-input-file.mp3")
 backend = "stable-ts-whisper-large-v3-turbo"
 word_level_timestamps = True

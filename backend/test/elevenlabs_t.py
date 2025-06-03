@@ -1,6 +1,6 @@
 import requests
 
-API_KEY = "sk_aa588e8b537bb5fe8afd96369d4a68da5c72036900432a74"
+API_KEY = ""
 AUDIO_FILE_PATH = "./backend/test/harvard.wav"  # Supported formats: mp3, wav, m4a, etc.
 
 def speech_to_text(audio_path):

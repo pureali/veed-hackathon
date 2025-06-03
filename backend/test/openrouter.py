@@ -1,4 +1,4 @@
-api_key="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"
+api_key=""
 import requests
 import json
 import os

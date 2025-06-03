@@ -5,7 +5,7 @@ filePath=os.path.dirname(os.path.abspath(__file__))
 def convertTextToSound(text):
     stability=0.5
     similarity_boost=0.75
-    api_key="sk_aa588e8b537bb5fe8afd96369d4a68da5c72036900432a74"
+    api_key=""
     #text=TEXT,
     #voice_id="9BWtsMINqrJLrRacOk9x"#female
     voice_id="CYw3kZ02Hs0563khs1Fj"

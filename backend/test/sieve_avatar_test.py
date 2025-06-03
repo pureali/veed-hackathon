@@ -1,13 +1,13 @@
 import sieve
 import os
 filePath = os.path.dirname(os.path.abspath(__file__))
-os.environ["SIEVE_API_KEY"] = "P6kSUHtIF1prsbBRpq-sCOBXo9ZfuJmrBOq_E49RwVk"
+os.environ["SIEVE_API_KEY"] = ""
 import eleven_working
 import fal_client
 import os
  
 
-os.environ["FAL_KEY"] = "e47ab552-d96c-4eda-a0fa-90952150a569:bf07ce225bd857883cf67ea0f978f841"
+os.environ["FAL_KEY"] = ""
 
 
 def generate_avatar(text, image_path):
