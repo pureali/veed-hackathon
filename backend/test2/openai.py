@@ -1,8 +1,8 @@
-api_key="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"
+api_key=""
 from openai import OpenAI
 
 client = OpenAI(
-  api_key="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"
+  api_key=""
 )
 
 completion = client.chat.completions.create(
