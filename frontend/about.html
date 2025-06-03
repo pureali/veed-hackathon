@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script>
+        async function callAskApi() {
+            //const question = document.getElementById('questionInput').value.trim();
+            const userInput = prompt("Please enter your input:");
+            question= userInput; // The answer is now in userInput variable
+            const responseArea = document.getElementById('responseArea');
+            
+            if (!question) {
+                responseArea.innerHTML = '<p>Please enter a question.</p>';
+                return;
+            }
+            
+            try {
+                // Replace this URL with your actual API endpoint
+                const apiUrl = 'http://localhost:8000/ask/1/'+encodeURIComponent(question);
+                //apiUrl="http://localhost:8000/ask/1/hello%20how%20long%20is%20the%20room"
+                responseArea.innerHTML = '<p>Thinking...</p>';
+                
+                // Make the API call
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // Add any additional headers required by your API
+                        // 'Authorization': 'Bearer your-token-here'
+                    },
+                   
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Display the response - adjust based on your API's response structure
+                responseArea.innerHTML = `<p><strong>Answer:</strong> ${data.text || data.response || 'No answer provided'}</p>`;
+                alert(data.text)
+            } catch (error) {
+                console.error('Error calling API:', error);
+                responseArea.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Optional: Add event listener for Enter key
+        document.getElementById('questionInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                callAskApi();
+            }
+        });
+    </script>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .nav-links a:hover {
+            background-color: #45a049;
+        }
+        .gallery {
+            display: none;
+            margin-bottom: 40px;
+        }
+        .gallery.active {
+            display: block;
+        }
+        .gallery h2 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .image-container img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .image-container img:hover {
+            transform: scale(1.05);
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .action-buttons button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .action-buttons button:nth-child(1) {
+            background-color: #2196F3;
+            color: white;
+        }
+        .action-buttons button:nth-child(2) {
+            background-color: #ff9800;
+            color: white;
+        }
+        .action-buttons button:nth-child(3) {
+            background-color: #9c27b0;
+            color: white;
+        }
+        .action-buttons button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <h1>House Gallery</h1>
+    
+    <div class="nav-links">
+        <a href="#" onclick="showGallery('house1')">House 1</a>
+        <a href="#" onclick="showGallery('house2')">House 2</a>
+        <a href="#" onclick="showGallery('house3')">House 3</a>
+        <a href="#" onclick="showGallery('house4')">House 4</a>
+    </div>
+    
+    <div id="house1" class="gallery">
+        <h2>House 1 Gallery</h2>
+        <div class="image-container">
+            <img src="http://localhost:8080/bedroom1.jpeg" onclick="window.location='http://localhost:8080/bed.mp4'" alt="House 1 Image 1">
+            <img src="http://localhost:8080/kitchen.webp" alt="House 1 Image 2">
+            <img src="http://localhost:8080/bedroom3.jpeg" alt="House 1 Image 3">
+            <img src="http://localhost:8080/outside.webp" onclick="window.location='http://localhost:8080/analytics.mp4'" alt="House 1 Image 4">
+            <img src="http://localhost:8080/hallway_1.webp" alt="House 1 Image 5">
+        </div>
+    </div>
+    
+    <div id="house2" class="gallery">
+        <h2>House 2 Gallery</h2>
+        <div class="image-container">
+            <img src="https://source.unsplash.com/random/300x200/?house2-1" alt="House 2 Image 1">
+            <img src="https://source.unsplash.com/random/300x200/?house2-2" alt="House 2 Image 2">
+            <img src="https://source.unsplash.com/random/300x200/?house2-3" alt="House 2 Image 3">
+            <img src="https://source.unsplash.com/random/300x200/?house2-4" alt="House 2 Image 4">
+            <img src="https://source.unsplash.com/random/300x200/?house2-5" alt="House 2 Image 5">
+        </div>
+    </div>
+    
+    <div id="house3" class="gallery">
+        <h2>House 3 Gallery</h2>
+        <div class="image-container">
+            <img src="https://source.unsplash.com/random/300x200/?house3-1" alt="House 3 Image 1">
+            <img src="https://source.unsplash.com/random/300x200/?house3-2" alt="House 3 Image 2">
+            <img src="https://source.unsplash.com/random/300x200/?house3-3" alt="House 3 Image 3">
+            <img src="https://source.unsplash.com/random/300x200/?house3-4" alt="House 3 Image 4">
+            <img src="https://source.unsplash.com/random/300x200/?house3-5" alt="House 3 Image 5">
+        </div>
+    </div>
+    
+    <div id="house4" class="gallery">
+        <h2>House 4 Gallery</h2>
+        <div class="image-container">
+            <img src="https://source.unsplash.com/random/300x200/?house4-1" alt="House 4 Image 1">
+            <img src="https://source.unsplash.com/random/300x200/?house4-2" alt="House 4 Image 2">
+            <img src="https://source.unsplash.com/random/300x200/?house4-3" alt="House 4 Image 3">
+            <img src="https://source.unsplash.com/random/300x200/?house4-4" alt="House 4 Image 4">
+            <img src="https://source.unsplash.com/random/300x200/?house4-5" alt="House 4 Image 5">
+        </div>
+    </div>
+    
+    <div class="action-buttons">
+        <button onclick="callAskApi()">Ask using audio</button>
+        <button onclick="window.location='http://localhost:8080/output.mp4'">AI Video</button>
+        <button onclick="window.location='http://localhost:8080/analytics.mp4'">Video Analytics with prompt and image</button>
+    </div>
+    
+    <script>
+        // Show the first gallery by default
+        document.addEventListener('DOMContentLoaded', function() {
+            showGallery('house1');
+        });
+        
+        function showGallery(houseId) {
+            // Hide all galleries
+            document.querySelectorAll('.gallery').forEach(gallery => {
+                gallery.classList.remove('active');
+            });
+            
+            // Show the selected gallery
+            document.getElementById(houseId).classList.add('active');
+        }
+    </script>
+    <div id="responseArea" style="margin-top: 20px; text-align: center;">Response</div>
+</body>
+</html>
